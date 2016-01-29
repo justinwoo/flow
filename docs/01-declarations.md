@@ -15,7 +15,7 @@ var M = require('M');
 M.foo(new C());
 {% endhighlight %}
 
-As is evident, the above code could be fraught with problems. Where is the `M` 
+As is evident, the above code could be fraught with problems. Where is the `M`
 module? Where is `C` defined?
 
 Running Flow on the above code yields:
@@ -78,6 +78,24 @@ M.foo(new C());
 ```bbcode
 No errors!
 ```
+
+### Mixins
+
+Declared classes in interfaces also have the benefit of being able to support mixins. By using the `mixins` keyword, you can declare a class which mixes in other classes and their fields and methods.
+
+{% highlight javascript linenos=table %}
+class A {
+  x: string;
+}
+declare class B {
+  y: string;
+}
+declare class C mixins A, B {
+  z: string;
+}
+{% endhighlight %}
+
+Classes mixed in to a declared class may be concrete or declarations. This feature can be thought of as "implements" for [interfaces](http://www.typescriptlang.org/Handbook#interfaces-class-types) in TypeScript or "with" for [mixins](https://www.dartlang.org/articles/mixins/) in Dart.
 
 ## Paths
 
